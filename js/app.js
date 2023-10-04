@@ -4,26 +4,24 @@ const dateBtn = document.getElementById('date-btn')
 const timeBtn = document.getElementById('time-btn')
 let time;
 
-dateBtn.onclick = () => {
-  time = 'date'
-  update()
-}
+dateBtn.onclick = bindTime('date')
 
-timeBtn.onclick = () => {
-  time = 'time'
-  update()
-}
+timeBtn.onclick = bindTime('time')
 
-fullBtn.onclick = () => {
-  time = 'full'
-  update()
-}
+fullBtn.onclick = bindTime('full')
 
 update()
 
 setInterval(() => {
   update()
 }, 1000);
+
+function bindTime(name) {
+  return () => {
+    time = name
+    update()
+  }
+}
 
 function update() {
   timeCounter.textContent = format(time)
